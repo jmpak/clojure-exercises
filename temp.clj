@@ -11,3 +11,9 @@
                 (do
                     (alter visitors conj username)
                     (str "Hello, ", username))))))
+
+
+(defn date [p1 p2 & c]
+    (println p1 "and" p2 "went out with " (count c) "chaporones.")
+     println (apply str c)
+    )
