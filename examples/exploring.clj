@@ -25,3 +25,15 @@
     (first (index-filter pred coll)))        
 
     
+
+(defn #^{:tag String} shout
+    [#^{:tag String} s] (.toUpperCase s))
+
+
+(defn #^String shout
+    [#^String s] (.toUpperCase s))
+ 
+(defn shout
+    ([s] (.toUpperCase s))
+    {:tag String})
+    
