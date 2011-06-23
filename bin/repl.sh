@@ -1,1 +1,1 @@
-java -cp .:lib/clojure.jar:lib/clojure-contrib-1.2.0.jar:lib/jline-0.9.94.jar jline.ConsoleRunner clojure.lang.Repl
+java -cp .:classes:lib/clojure.jar:lib/clojure-contrib-1.2.0.jar:lib/jline-0.9.94.jar jline.ConsoleRunner clojure.lang.Repl

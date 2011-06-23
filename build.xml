@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="peekfacebook" default="all">
+  
+
+  <!--add manually after generating file-->
+  <property file="local.properties"/>
+  <property file="peekfacebook.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.egg"/>
+    <include name="*.ear"/>
+    <include name="*.swc"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <include name="**/?*.properties"/>
+    <include name="**/?*.xml"/>
+    <include name="**/?*.gif"/>
+    <include name="**/?*.png"/>
+    <include name="**/?*.jpeg"/>
+    <include name="**/?*.jpg"/>
+    <include name="**/?*.html"/>
+    <include name="**/?*.dtd"/>
+    <include name="**/?*.tld"/>
+    <include name="**/?*.ftl"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <path id="jdk.classpath.1.6">
+    <fileset dir="${jdk.home.1.6}">
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/deploy.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/dt.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/javaws.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/jce.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/management-agent.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/plugin.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/sa-jdi.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/alt-rt.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/charsets.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/classes.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/dt.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/jce.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/jconsole.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/jsse.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/laf.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/management-agent.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/../Classes/ui.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/apple_provider.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/dnsns.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/localedata.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/sunjce_provider.jar"/>
+      <include name="../../../../../Frameworks/JavaVM.framework/Versions/1.6/Home/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.annogen.classpath">
+    <pathelement location="${basedir}/lib/annogen-0.1.0.jar"/>
+  </path>
+  
+  <path id="library.axiom.classpath">
+    <pathelement location="${basedir}/lib/axiom-api-1.2.8.jar"/>
+    <pathelement location="${basedir}/lib/axiom-dom-1.2.8.jar"/>
+    <pathelement location="${basedir}/lib/axiom-impl-1.2.8.jar"/>
+  </path>
+  
+  <path id="library.axis2.classpath">
+    <pathelement location="${basedir}/lib/axis2-adb-1.5.1.jar"/>
+    <pathelement location="${basedir}/lib/axis2-kernel-1.5.1.jar"/>
+    <pathelement location="${basedir}/lib/axis2-spring-1.5.1.jar"/>
+    <pathelement location="${basedir}/lib/axis2-transport-http-1.5.1.jar"/>
+    <pathelement location="${basedir}/lib/axis2-transport-local-1.5.1.jar"/>
+  </path>
+  
+  <path id="library.commons.classpath">
+    <pathelement location="${basedir}/lib/commons-codec-1.4.jar"/>
+    <pathelement location="${basedir}/lib/commons-fileupload-1.2.jar"/>
+    <pathelement location="${basedir}/lib/commons-httpclient-3.1.jar"/>
+    <pathelement location="${basedir}/lib/commons-lang-2.2.jar"/>
+    <pathelement location="${basedir}/lib/commons-logging-1.1.1.jar"/>
+    <pathelement location="${basedir}/lib/httpcore-4.0.jar"/>
+  </path>
+  
+  <path id="library.emobix.classpath">
+    <pathelement location="${basedir}/lib/emobiix.jar"/>
+  </path>
+  
+  <path id="library.exchange.classpath">
+    <pathelement location="${basedir}/lib/exchange-client-1.3.1.jar"/>
+    <pathelement location="${basedir}/lib/htmllexer-2.0.jar"/>
+    <pathelement location="${basedir}/lib/htmlparser-2.0.jar"/>
+    <pathelement location="${basedir}/lib/jdom-1.0.jar"/>
+    <pathelement location="${basedir}/lib/syncu4j-1.0.jar"/>
+  </path>
+  
+  <path id="library.javamail.classpath">
+    <pathelement location="${basedir}/lib/gson-1.5.jar"/>
+    <pathelement location="${basedir}/lib/json-20080701.jar"/>
+    <pathelement location="${basedir}/lib/mail-1.4.3-peek.jar"/>
+    <pathelement location="${basedir}/lib/mysql-connector-java-5.1.10-bin.jar"/>
+    <pathelement location="${basedir}/lib/oauth-20090825.jar"/>
+  </path>
+  
+  <path id="library.junit.classpath">
+    <pathelement location="${basedir}/lib/junit-4.4.jar"/>
+  </path>
+  
+  <path id="library.log4j.classpath">
+    <pathelement location="${basedir}/lib/log4j-1.2.15.jar"/>
+  </path>
+  
+  <path id="library.neethi.classpath">
+    <pathelement location="${basedir}/lib/neethi-2.0.4.jar"/>
+  </path>
+  
+  <path id="library.slf4j.classpath">
+    <pathelement location="${basedir}/lib/slf4j-api-1.5.2.jar"/>
+    <pathelement location="${basedir}/lib/slf4j-log4j12-1.5.2.jar"/>
+  </path>
+  
+  <path id="library.spring.classpath">
+    <pathelement location="${basedir}/lib/spring-aop.jar"/>
+    <pathelement location="${basedir}/lib/spring-beans.jar"/>
+    <pathelement location="${basedir}/lib/spring-context-support.jar"/>
+    <pathelement location="${basedir}/lib/spring-context.jar"/>
+    <pathelement location="${basedir}/lib/spring-core.jar"/>
+    <pathelement location="${basedir}/lib/spring-jdbc.jar"/>
+    <pathelement location="${basedir}/lib/spring-jms.jar"/>
+    <pathelement location="${basedir}/lib/spring-security-core-2.0.5.RELEASE.jar"/>
+    <pathelement location="${basedir}/lib/spring-security-taglibs-2.0.5.RELEASE.jar"/>
+    <pathelement location="${basedir}/lib/spring-test.jar"/>
+    <pathelement location="${basedir}/lib/spring-tx.jar"/>
+    <pathelement location="${basedir}/lib/spring-web.jar"/>
+    <pathelement location="${basedir}/lib/spring-webmvc.jar"/>
+  </path>
+  
+  <path id="library.standard.classpath">
+    <pathelement location="${basedir}/lib/standard-1.1.2.jar"/>
+  </path>
+  
+  <path id="library.twitter.classpath">
+    <pathelement location="${basedir}/lib/twitter4j-core-2.1.3.jar"/>
+  </path>
+  
+  <path id="library.wooden.classpath">
+    <pathelement location="${basedir}/lib/woden-api-1.0M8.jar"/>
+  </path>
+  
+  <path id="library.xml.classpath">
+    <pathelement location="${basedir}/lib/XmlSchema-1.4.2.jar"/>
+    <pathelement location="${basedir}/lib/wsdl4j-1.6.2.jar"/>
+    <pathelement location="${basedir}/lib/xmlbeans-2.3.0.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  
+  <path id="library.jboss_4.2.3.ga.classpath">
+    <!--add manually after generating file-->
+    <pathelement location="${path.variable.jboss_home}/server/all/lib/jboss-j2ee.jar"/>
+    <pathelement location="${path.variable.jboss_home}/server/all/lib/jsp-api.jar"/>
+    <pathelement location="${path.variable.jboss_home}/server/all/lib/servlet-api.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module PeekCares -->
+  
+  <dirname property="module.peekcares.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.peekcares" value="${jdk.home.1.6}"/>
+  <property name="module.jdk.bin.peekcares" value="${jdk.bin.1.6}"/>
+  <property name="module.jdk.classpath.peekcares" value="jdk.classpath.1.6"/>
+  
+  <property name="compiler.args.peekcares" value="${compiler.args}"/>
+
+  <!--add manually after generating file-->
+  <property name="peekcares.output.base.dir" value="${module.peekcares.basedir}/out"/>
+  <property name="peekcares.output.dir" value="${module.peekcares.basedir}/out/production/PeekCares"/>
+  <property name="peekcares.testoutput.dir" value="${module.peekcares.basedir}/out/test/PeekCares"/>
+  
+  <path id="peekcares.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="peekcares.module.production.classpath">
+    <path refid="${module.jdk.classpath.peekcares}"/>
+    <path refid="library.spring.classpath"/>
+    <path refid="library.standard.classpath"/>
+    <path refid="library.commons.classpath"/>
+    <path refid="library.exchange.classpath"/>
+    <path refid="library.javamail.classpath"/>
+    <path refid="library.emobix.classpath"/>
+    <path refid="library.axis2.classpath"/>
+    <path refid="library.axiom.classpath"/>
+    <path refid="library.neethi.classpath"/>
+    <path refid="library.slf4j.classpath"/>
+    <path refid="library.wooden.classpath"/>
+    <path refid="library.xml.classpath"/>
+    <path refid="library.annogen.classpath"/>
+    <path refid="library.twitter.classpath"/>
+    <path refid="library.jboss_4.2.3.ga.classpath"/>
+    <path refid="library.log4j.classpath"/>
+  </path>
+  
+  <path id="peekcares.runtime.production.module.classpath">
+    <pathelement location="${peekcares.output.dir}"/>
+    <path refid="library.spring.classpath"/>
+    <path refid="library.standard.classpath"/>
+    <path refid="library.commons.classpath"/>
+    <path refid="library.exchange.classpath"/>
+    <path refid="library.javamail.classpath"/>
+    <path refid="library.emobix.classpath"/>
+    <path refid="library.axis2.classpath"/>
+    <path refid="library.axiom.classpath"/>
+    <path refid="library.neethi.classpath"/>
+    <path refid="library.slf4j.classpath"/>
+    <path refid="library.wooden.classpath"/>
+    <path refid="library.xml.classpath"/>
+    <path refid="library.annogen.classpath"/>
+    <path refid="library.twitter.classpath"/>
+    <path refid="library.jboss_4.2.3.ga.classpath"/>
+  </path>
+  
+  <path id="peekcares.module.classpath">
+    <path refid="${module.jdk.classpath.peekcares}"/>
+    <pathelement location="${peekcares.output.dir}"/>
+    <path refid="library.spring.classpath"/>
+    <path refid="library.standard.classpath"/>
+    <path refid="library.commons.classpath"/>
+    <path refid="library.exchange.classpath"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.javamail.classpath"/>
+    <path refid="library.emobix.classpath"/>
+    <path refid="library.axis2.classpath"/>
+    <path refid="library.axiom.classpath"/>
+    <path refid="library.neethi.classpath"/>
+    <path refid="library.slf4j.classpath"/>
+    <path refid="library.wooden.classpath"/>
+    <path refid="library.xml.classpath"/>
+    <path refid="library.annogen.classpath"/>
+    <path refid="library.twitter.classpath"/>
+    <path refid="library.jboss_4.2.3.ga.classpath"/>
+    <path refid="library.log4j.classpath"/>
+  </path>
+  
+  <path id="peekcares.runtime.module.classpath">
+    <pathelement location="${peekcares.output.dir}"/>
+    <pathelement location="${peekcares.testoutput.dir}"/>
+    <path refid="library.spring.classpath"/>
+    <path refid="library.standard.classpath"/>
+    <path refid="library.commons.classpath"/>
+    <path refid="library.exchange.classpath"/>
+    <path refid="library.junit.classpath"/>
+    <path refid="library.javamail.classpath"/>
+    <path refid="library.emobix.classpath"/>
+    <path refid="library.axis2.classpath"/>
+    <path refid="library.axiom.classpath"/>
+    <path refid="library.neethi.classpath"/>
+    <path refid="library.slf4j.classpath"/>
+    <path refid="library.wooden.classpath"/>
+    <path refid="library.xml.classpath"/>
+    <path refid="library.annogen.classpath"/>
+    <path refid="library.twitter.classpath"/>
+    <path refid="library.jboss_4.2.3.ga.classpath"/>
+    <path refid="library.log4j.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.peekcares">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.peekcares">
+    <patternset refid="excluded.from.module.peekcares"/>
+  </patternset>
+  
+  <path id="peekcares.module.sourcepath">
+    <dirset dir="${module.peekcares.basedir}">
+      <include name="conf"/>
+      <include name="src"/>
+      <include name="web/WEB-INF"/>
+    </dirset>
+  </path>
+  
+  <path id="peekcares.module.test.sourcepath">
+    <dirset dir="${module.peekcares.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.peekcares" depends="compile.module.peekcares.production,compile.module.peekcares.tests" description="Compile module PeekCares"/>
+  
+  <target name="compile.module.peekcares.production" description="Compile module PeekCares; production classes">
+    <mkdir dir="${peekcares.output.dir}"/>
+    <javac destdir="${peekcares.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.peekcares}/javac">
+      <compilerarg line="${compiler.args.peekcares}"/>
+      <bootclasspath refid="peekcares.module.bootclasspath"/>
+      <classpath refid="peekcares.module.production.classpath"/>
+      <src refid="peekcares.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.peekcares"/>
+    </javac>
+    
+    <copy todir="${peekcares.output.dir}">
+      <fileset dir="${module.peekcares.basedir}/conf">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.peekcares.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.peekcares.basedir}/web/WEB-INF">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.peekcares.tests" depends="compile.module.peekcares.production" description="compile module PeekCares; test classes" unless="skip.tests">
+    <mkdir dir="${peekcares.testoutput.dir}"/>
+    <javac destdir="${peekcares.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.peekcares}/javac">
+      <compilerarg line="${compiler.args.peekcares}"/>
+      <bootclasspath refid="peekcares.module.bootclasspath"/>
+      <classpath refid="peekcares.module.classpath"/>
+      <src refid="peekcares.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.peekcares"/>
+    </javac>
+    
+    <copy todir="${peekcares.testoutput.dir}">
+      <fileset dir="${module.peekcares.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.peekcares" description="cleanup module">
+      <!--add manually after generating file-->
+      <delete dir="${peekcares.output.base.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.peekcares, clean.artifact.peekcares:jar, clean.artifact.peekcares:web_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.peekcares" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.peekcares:jar" value="${basedir}"/>
+    <property name="artifact.output.peekcares:web" value="${basedir}/out"/>
+    <property name="artifact.output.peekcares:web_exploded" value="${basedir}/out/exploded/PeekCaresWeb.war"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.PeekCares.jar" value="${artifacts.temp.dir}/PeekCares.jar"/>
+    <property name="temp.jar.path.peekdom-0.10.war" value="${artifacts.temp.dir}/peekdom-0.10.war"/>
+  </target>
+  
+  <target name="clean.artifact.peekcares:jar" description="clean PeekCares:jar artifact output">
+    <delete dir="${artifact.output.peekcares:jar}"/>
+  </target>
+  
+  <target name="clean.artifact.peekcares:web_exploded" description="clean PeekCares:Web exploded artifact output">
+    <delete dir="${artifact.output.peekcares:web_exploded}"/>
+  </target>
+  
+  <target name="artifact.peekcares:jar" depends="init.artifacts, compile.module.peekcares" description="Build &apos;PeekCares:jar&apos; artifact">
+    <mkdir dir="${artifact.output.peekcares:jar}"/>
+    <jar destfile="${temp.jar.path.PeekCares.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${peekcares.output.dir}"/>
+    </jar>
+    <copy file="${temp.jar.path.PeekCares.jar}" tofile="${artifact.output.peekcares:jar}/PeekCares.jar"/>
+  </target>
+  
+  <target name="artifact.peekcares:web" depends="init.artifacts, artifact.peekcares:web_exploded" description="Build &apos;PeekCares:Web&apos; artifact">
+    <property name="artifact.temp.output.peekcares:web" value="${artifacts.temp.dir}/PeekCares_Web"/>
+    <mkdir dir="${artifact.temp.output.peekcares:web}"/>
+    <jar destfile="${temp.jar.path.peekdom-0.10.war}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${artifact.output.peekcares:web_exploded}"/>
+      <zipfileset file="${basedir}/lib/exchange-client-1.3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/htmlparser-2.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/htmllexer-2.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/jdom-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/syncu4j-1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/commons-lang-2.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/commons-httpclient-3.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/commons-logging-1.1.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/commons-codec-1.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/httpcore-4.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/commons-fileupload-1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/oauth-20090825.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/mysql-connector-java-5.1.10-bin.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/mail-1.4.3-peek.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/json-20080701.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/gson-1.5.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-security-core-2.0.5.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-security-taglibs-2.0.5.RELEASE.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-test.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-context-support.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-beans.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-aop.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-core.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-context.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-jms.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-webmvc.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-jdbc.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-tx.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/spring-web.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/standard-1.1.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/annogen-0.1.0.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axiom-impl-1.2.8.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axiom-dom-1.2.8.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axiom-api-1.2.8.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axis2-transport-local-1.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axis2-transport-http-1.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axis2-spring-1.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axis2-kernel-1.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/axis2-adb-1.5.1.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/emobiix.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/neethi-2.0.4.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/slf4j-api-1.5.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/slf4j-log4j12-1.5.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/twitter4j-core-2.1.3.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/woden-api-1.0M8.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/wsdl4j-1.6.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/XmlSchema-1.4.2.jar" prefix="WEB-INF/lib"/>
+      <zipfileset file="${basedir}/lib/xmlbeans-2.3.0.jar" prefix="WEB-INF/lib"/>
+    </jar>
+    <copy file="${temp.jar.path.peekdom-0.10.war}" tofile="${artifact.temp.output.peekcares:web}/peekdom-0.10.war"/>
+  </target>
+  
+  <target name="artifact.peekcares:web_exploded" depends="init.artifacts, compile.module.peekcares" description="Build &apos;PeekCares:Web exploded&apos; artifact">
+    <mkdir dir="${artifact.output.peekcares:web_exploded}"/>
+    <copy todir="${artifact.output.peekcares:web_exploded}">
+      <fileset dir="${basedir}/web"/>
+    </copy>
+    <mkdir dir="${artifact.output.peekcares:web_exploded}/WEB-INF"/>
+    <copy file="${basedir}/web/WEB-INF/web.xml" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.peekcares:web_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.peekcares:web_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.peekcares:web_exploded}/WEB-INF/classes">
+      <fileset dir="${peekcares.output.dir}"/>
+    </copy>
+    <mkdir dir="${artifact.output.peekcares:web_exploded}/WEB-INF/lib"/>
+    <copy file="${basedir}/lib/twitter4j-core-2.1.3.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/twitter4j-core-2.1.3.jar"/>
+    <copy file="${basedir}/lib/annogen-0.1.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/annogen-0.1.0.jar"/>
+    <copy file="${basedir}/lib/axiom-impl-1.2.8.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axiom-impl-1.2.8.jar"/>
+    <copy file="${basedir}/lib/axiom-dom-1.2.8.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axiom-dom-1.2.8.jar"/>
+    <copy file="${basedir}/lib/axiom-api-1.2.8.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axiom-api-1.2.8.jar"/>
+    <copy file="${basedir}/lib/axis2-transport-local-1.5.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axis2-transport-local-1.5.1.jar"/>
+    <copy file="${basedir}/lib/axis2-transport-http-1.5.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axis2-transport-http-1.5.1.jar"/>
+    <copy file="${basedir}/lib/axis2-spring-1.5.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axis2-spring-1.5.1.jar"/>
+    <copy file="${basedir}/lib/axis2-kernel-1.5.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axis2-kernel-1.5.1.jar"/>
+    <copy file="${basedir}/lib/axis2-adb-1.5.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/axis2-adb-1.5.1.jar"/>
+    <copy file="${basedir}/lib/commons-lang-2.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/commons-lang-2.2.jar"/>
+    <copy file="${basedir}/lib/commons-httpclient-3.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+    <copy file="${basedir}/lib/commons-logging-1.1.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/commons-logging-1.1.1.jar"/>
+    <copy file="${basedir}/lib/commons-codec-1.4.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/commons-codec-1.4.jar"/>
+    <copy file="${basedir}/lib/httpcore-4.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/httpcore-4.0.jar"/>
+    <copy file="${basedir}/lib/commons-fileupload-1.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/commons-fileupload-1.2.jar"/>
+    <copy file="${basedir}/lib/emobiix.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/emobiix.jar"/>
+    <copy file="${basedir}/lib/exchange-client-1.3.1.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/exchange-client-1.3.1.jar"/>
+    <copy file="${basedir}/lib/htmlparser-2.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/htmlparser-2.0.jar"/>
+    <copy file="${basedir}/lib/htmllexer-2.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/htmllexer-2.0.jar"/>
+    <copy file="${basedir}/lib/jdom-1.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/jdom-1.0.jar"/>
+    <copy file="${basedir}/lib/syncu4j-1.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/syncu4j-1.0.jar"/>
+    <copy file="${basedir}/lib/oauth-20090825.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/oauth-20090825.jar"/>
+    <copy file="${basedir}/lib/mysql-connector-java-5.1.10-bin.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/mysql-connector-java-5.1.10-bin.jar"/>
+    <copy file="${basedir}/lib/mail-1.4.3-peek.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/mail-1.4.3-peek.jar"/>
+    <copy file="${basedir}/lib/json-20080701.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/json-20080701.jar"/>
+    <copy file="${basedir}/lib/gson-1.5.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/gson-1.5.jar"/>
+    <copy file="${basedir}/lib/neethi-2.0.4.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/neethi-2.0.4.jar"/>
+    <copy file="${basedir}/lib/slf4j-api-1.5.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/slf4j-api-1.5.2.jar"/>
+    <copy file="${basedir}/lib/slf4j-log4j12-1.5.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/slf4j-log4j12-1.5.2.jar"/>
+    <copy file="${basedir}/lib/spring-security-core-2.0.5.RELEASE.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-security-core-2.0.5.RELEASE.jar"/>
+    <copy file="${basedir}/lib/spring-security-taglibs-2.0.5.RELEASE.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-security-taglibs-2.0.5.RELEASE.jar"/>
+    <copy file="${basedir}/lib/spring-test.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-test.jar"/>
+    <copy file="${basedir}/lib/spring-context-support.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-context-support.jar"/>
+    <copy file="${basedir}/lib/spring-beans.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-beans.jar"/>
+    <copy file="${basedir}/lib/spring-aop.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-aop.jar"/>
+    <copy file="${basedir}/lib/spring-core.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-core.jar"/>
+    <copy file="${basedir}/lib/spring-context.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-context.jar"/>
+    <copy file="${basedir}/lib/spring-jms.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-jms.jar"/>
+    <copy file="${basedir}/lib/spring-webmvc.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-webmvc.jar"/>
+    <copy file="${basedir}/lib/spring-jdbc.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-jdbc.jar"/>
+    <copy file="${basedir}/lib/spring-tx.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-tx.jar"/>
+    <copy file="${basedir}/lib/spring-web.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/spring-web.jar"/>
+    <copy file="${basedir}/lib/standard-1.1.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/standard-1.1.2.jar"/>
+    <copy file="${basedir}/lib/woden-api-1.0M8.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/woden-api-1.0M8.jar"/>
+    <copy file="${basedir}/lib/wsdl4j-1.6.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/wsdl4j-1.6.2.jar"/>
+    <copy file="${basedir}/lib/XmlSchema-1.4.2.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/XmlSchema-1.4.2.jar"/>
+    <copy file="${basedir}/lib/xmlbeans-2.3.0.jar" tofile="${artifact.output.peekcares:web_exploded}/WEB-INF/lib/xmlbeans-2.3.0.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.peekcares:jar, artifact.peekcares:web, artifact.peekcares:web_exploded" description="Build all artifacts">
+    <mkdir dir="${artifact.output.peekcares:web}"/>
+    <copy todir="${artifact.output.peekcares:web}">
+      <fileset dir="${artifact.temp.output.peekcares:web}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
